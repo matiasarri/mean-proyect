@@ -21,7 +21,13 @@ employeeCtrlr.getEmployees = async (req, res) => {
 
 employeeCtrlr.createEmployees = async (req, res) => {
     //console.log(req.body);
-    const employee = new Employee(req.body);
+    const employee = new Employee({
+        name: req.body.name,
+        posicion: req.body.posicion,
+        office: req.body.office,
+        salary: req.body.salary
+    });
+    
     //console.log(employee);
     await employee.save();
     res.json({'status': 'Empleado guardado correctamente'});
